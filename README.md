@@ -34,4 +34,5 @@ This project is a RESTful API designed to manage users, authentication, file upl
 1. Clone the repository.
 2. Install dependencies: `npm install`
 3. Configure environment variables (see `.env.example`).
-4. Start the server: `node app.js`
+4. Start the server: `npm run dev`
+5. For production run `npm run build` to get exec file
