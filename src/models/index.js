@@ -41,36 +41,10 @@ db.logApi = require("./logApi.model.js")(sequelize, Sequelize);
 db.logSysteme = require("./logSysteme.model.js")(sequelize, Sequelize);
 db.uuid = require("./uuid.model.js")(sequelize, Sequelize);
 
-// Import des modèles liés aux recettes
-db.recipe = require("./recipe.model.js")(sequelize, Sequelize);
-db.recipeType = require("./recipeType.model.js")(sequelize, Sequelize);
-db.recipeStep = require("./recipeStep.model.js")(sequelize, Sequelize);
-db.ingredient = require("./ingredient.model.js")(sequelize, Sequelize);
-db.ingredientType = require("./ingredientType.model.js")(sequelize, Sequelize);
-db.measureUnit = require("./measureUnit.model.js")(sequelize, Sequelize);
-db.recipeIngredient = require("./recipeIngredient.model.js")(sequelize, Sequelize);
-db.recipeStepIngredient = require("./recipeStepIngredient.model.js")(sequelize, Sequelize);
 
-// Import des nouveaux modèles
-const { DietaryTag, RecipeDietaryTag } = require("./dietaryTag.model.js")(sequelize, Sequelize);
-db.dietaryTag = DietaryTag;
-db.recipeDietaryTag = RecipeDietaryTag;
+db.cdn = require("./cdn.model.js")(sequelize, Sequelize);
 
-db.ingredientPrice = require("./ingredientPrice.model.js")(sequelize, Sequelize);
-db.nutritionalValue = require("./nutritionalValue.model.js")(sequelize, Sequelize);
-db.userRecipeCollection = require("./userRecipeCollection.model.js")(sequelize, Sequelize);
-db.recipeReview = require("./recipeReview.model.js")(sequelize, Sequelize);
-db.mealPlan = require("./mealPlan.model.js")(sequelize, Sequelize);
 
-const { ShoppingList, ShoppingListItem } = require("./shoppingList.model.js")(sequelize, Sequelize);
-db.shoppingList = ShoppingList;
-db.shoppingListItem = ShoppingListItem;
-
-db.shoppingListRecipe = require("./shoppingListRecipe.model.js")(sequelize, Sequelize);
-db.shoppingListShare = require("./shoppingListShare.model.js")(sequelize, Sequelize);
-
-db.mealPlanParent = require("./mealPlanParent.model.js")(sequelize, Sequelize);
-db.mealPlanShare = require("./mealPlanShare.model.js")(sequelize, Sequelize);
 
 // Définit les relations entre les entités user et rôle
 db.role.belongsToMany(db.user, {
@@ -93,7 +67,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 // Définit un tableau de rôles possibles
-db.ROLES = ["user", "admin"];
+db.ROLES = ["user", "admin","uploadImg"];
 
 // Exporte l'objet db contenant les modèles, les relations et les rôles
 module.exports = db;

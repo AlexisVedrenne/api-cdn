@@ -18,17 +18,68 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null,file.originalname);
   },
 });
 
 const upload = multer({ storage });
 
+const replaceStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const folder = req.params.folder;
+    const uploadPath = path.join(BASE_UPLOAD_DIR, folder);
+    fs.mkdirSync(uploadPath, { recursive: true });
+    cb(null, uploadPath);
+  },
+  filename: function (req, file, cb) {
+    const finalName = req.params.filename;
+    cb(null, finalName);
+  },
+});
+
+const uploadReplace = multer({ storage: replaceStorage });
+
+
 module.exports = function (app) {
   app.post(
     `${baseRoute}/upload/img/:folder`,
-    upload.single("image"),
-    [logMiddleware.log, authJwt.isAdministrateurOrUploadImg],
+    [
+      logMiddleware.log,
+      authJwt.verifyToken,
+      authJwt.isAdministrateurOrUploadImg,
+      upload.single("img"),
+    ],
     controller.uploadImg
+  );
+
+  app.put(
+    `${baseRoute}/upload/img/:folder/:filename`,
+    [
+      logMiddleware.log,
+      authJwt.verifyToken,
+      authJwt.isAdministrateurOrUploadImg,
+      uploadReplace.single("img"),
+    ],
+    controller.updateImg
+  );
+
+  app.delete(
+    `${baseRoute}/upload/img/:folder/:filename`,
+    [
+      logMiddleware.log,
+      authJwt.verifyToken,
+      authJwt.isAdministrateurOrUploadImg,
+    ],
+    controller.delete
+  );
+
+  app.get(
+    `${baseRoute}`,
+    [
+      logMiddleware.log,
+      authJwt.verifyToken,
+      authJwt.isAdministrateurOrUploadImg,
+    ],
+    controller.getAllApi
   );
 };

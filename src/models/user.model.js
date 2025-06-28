@@ -27,14 +27,6 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  User.associate = (models) => {
-    User.belongsToMany(models.shoppingList, {
-      through: models.shoppingListShare,
-      foreignKey: 'userId',
-      otherKey: 'shoppingListId',
-      as: 'sharedLists'
-    });
-  };
 
   return User; // Retourne le modèle de données "User" défini
 };

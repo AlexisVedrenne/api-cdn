@@ -57,6 +57,6 @@ require("./src/routes/role.routes")(app);
 require("./src/routes/user.routes")(app);
 require("./src/routes/log.routes")(app);
 require("./src/routes/uuid.routes")(app);
-
+require("./src/routes/cdn.routes")(app);
 // Exporte l'application Express configurée
 module.exports = app;

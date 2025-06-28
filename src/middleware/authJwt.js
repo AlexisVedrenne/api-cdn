@@ -73,30 +73,29 @@ isAdministrateurOrEditor = (req, res, next) => {
     });
 };
 
-isAdministrateurOrUploadImg = (req, res, next) => {
-  User.findByPk(req.userId)
-    .then((user) => {
-      user.getRoles().then((roles) => {
-        for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "admin" || roles[i].name === "uploadImg") {
-            next();
-            return;
-          }
-        }
-
-        res.status(403).send({
-          message: "Ressource réservée.",
-        });
+isAdministrateurOrUploadImg = async (req, res, next) => {
+  try{
+    const user = await User.findByPk(req.userId)
+    const roles = await user.getRoles()
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "admin" || roles[i].name === "uploadImg") {
+        next();
         return;
-      });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          "Erreur : Token corrompu ou impossible de vérifier le rôle d'accès.",
-      });
+      }
+    }
+    res.status(403).send({
+      message: "Ressource réservée.",
     });
+  }catch(err){
+    res.status(500).send({
+      message:
+        "Erreur : Token corrompu ou impossible de vérifier le rôle d'accès.",
+    });
+  }
+
+
 };
+
 
 const authJwt = {
   verifyToken: verifyToken,
