@@ -1,0 +1,64 @@
+{
+  "name": "api-cooked",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/bin/index.js",
+  "scripts": {
+    "dev": "nodemon ./src/bin/index.js",
+    "start": "node /src/bin/index.js",
+    "build": "pkg .",
+    "install-python": "pip install -r requirements.txt"
+  },
+  "bin": "src/bin/index.js",
+  "pkg": {
+    "assets": [
+      "src/config/.env",
+      "src/boot/**/*.js",
+      "src/config/**/*.js",
+      "src/controllers/**/*.js",
+      "src/middleware/**/*.js",
+      "src/models/**/*.js",
+      "src/routes/**/*.js",
+      "src/services/**/*.js",
+      "src/bin/certs/**/*",
+      "node_modules/axios/**/*",
+      "src/assets/images/**/*",
+      "src/assets/templates/**/*",
+      "src/assets/fonts/**/*"
+    ],
+    "scripts": [
+      "src/bin/**/*.js"
+    ],
+    "targets": [
+      "node16-win-x64",
+      "node16-linux-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.11.13",
+    "debug": "~2.6.9",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "~1.9.1",
+    "multer": "^2.0.1",
+    "node-cron": "^3.0.3",
+    "node-mailjet": "^6.0.8",
+    "nodemailer": "^6.10.1",
+    "nodemon": "^3.0.1",
+    "pg": "^8.14.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

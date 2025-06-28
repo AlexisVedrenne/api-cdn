@@ -1,0 +1,10 @@
+node_modules/
+yarn.lock
+.env
+yarn-error.log
+semiAutomatique/logErreur.txt
+logs/logSysteme.txt
+logs/logApi.txt
+dist/
+output/
+src/scripts/__pycache__
