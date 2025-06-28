@@ -7,5 +7,6 @@ module.exports = {
   host: process.env[`API_IP`],
   apiPort: process.env[`API_PORT`],
   keyName:process.env[`KEY_NAME`],
-  certName:process.env[`CERT_NAME`]
+  certName:process.env[`CERT_NAME`],
+  env:process.env[`SERV_ENV`]
 };

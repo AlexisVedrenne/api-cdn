@@ -16,7 +16,7 @@ const cert = path.join(__dirname, "certs", config.certName);
 const port = normalizePort(process.env.API_PORT); // Normalisation du port
 
 function createServer() {
-  if (process.env.NODE_ENV === "production") {
+  if (config.env === "prod") {
   return https.createServer(
     {
       key: fs.readFileSync(key), // Charger le certificat PFX
