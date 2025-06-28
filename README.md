@@ -12,7 +12,6 @@ This project is a RESTful API designed to manage users, authentication, file upl
 - **UUID Management**: Handle password reset links and unique identifiers.
 - **Mail Service**: Send password reset emails using templates.
 - **Python Integration**: Run Python scripts for advanced processing (e.g., image or audio manipulation).
-- **OpenAI Integration**: Embedding and text generation features via OpenAI API.
 - **Cron Jobs**: Automated tasks such as cleaning up old UUIDs.
 
 ## Endpoints Overview
@@ -29,7 +28,6 @@ This project is a RESTful API designed to manage users, authentication, file upl
 - Node.js
 - Python (for script integration)
 - Mailjet account (for email sending)
-- OpenAI API key (for AI features)
 
 ## Getting Started
 
