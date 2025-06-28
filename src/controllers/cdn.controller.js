@@ -5,6 +5,7 @@ const logs = require("../services/log");
 const fs = require("fs");
 const path = require("path");
 const config = require("../config/cdn.config");
+const cdnConfig = require("../config/cdn.config");
 
 const BASE_UPLOAD_DIR =
   config.cdnFolder || path.resolve(__dirname, "../images");
@@ -12,7 +13,7 @@ const BASE_UPLOAD_DIR =
 exports.uploadImg = async (req, res) => {
   try {
     if (req.file) {
-      const imageUrl = `https://${serverConfig.host}/${req.params.folder}/${req.file.filename}`;
+      const imageUrl = `https://${cdnConfig.cdnDomaine}/${req.params.folder}/${req.file.filename}`;
       const cdn = await Cdn.create({
         folder: req.params.folder,
         filename: req.file.filename,
@@ -38,7 +39,7 @@ exports.uploadImg = async (req, res) => {
 exports.updateImg = async (req, res) => {
   try {
     if (req.file) {
-      const imageUrl = `https://${serverConfig.host}/${req.params.folder}/${req.file.filename}`;
+      const imageUrl = `https://${cdnConfig.cdnDomaine}/${req.params.folder}/${req.file.filename}`;
       await Cdn.update(
         {
           url: imageUrl,
