@@ -1,5 +1,5 @@
 {
-  "name": "api-cooked",
+  "name": "api-cdn",
   "version": "1.0.0",
   "private": true,
   "main": "src/bin/index.js",
